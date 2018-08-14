@@ -1,0 +1,9 @@
+
+.nvlinks {
+    color: #231e1e;
+    font-size: 1.1rem;
+}
+
+.nvlinks:hover {
+    color: #c0c0c0;
+}

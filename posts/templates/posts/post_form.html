@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+    {% block content %}
+    <h1>Post Form</h1>
+    
+    <form method="post" action="{% url 'add_post' %}">
+        
+        {% csrf_token %}
+       
+       {{ form | as_bootstrap}}
+       
+        <p><input type="submit"/></p>
+        
+    </form>
+{% endblock content %}

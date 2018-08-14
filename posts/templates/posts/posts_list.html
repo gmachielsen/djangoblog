@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+  </ul>
+  
+    <form action="#">
+      
+      {% csrf_token %}
+     
+     {{ filter_form }}
+     
+      <p><input type="submit"/></p>
+      
+  </form>
+
+  
+
+<div class="row">
+{% for post in posts %}
+      <div class="col s4 card">
+        <div class="card-image">
+          <img src="{{ MEDIA_URL}}{{post.image}}">
+          <span class="card-title">{{ post.title }}</span>
+        </div>
+        <div class="card-content">
+          <p{{ post.content|truncatewords:20 }}></p>
+        </div>
+        <div class="card-action">
+        <a href="{% url 'post_detail' post.id %}"  class="btn btn-default">Read more</a>
+                                <p><span class="boldtext">Published on:</span> {{ post.published_date }} </p>
+                        <p><span class="boldtext">Views:</span> {{post.views}}</p>
+                        <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
+        </div>
+      </div>
+ {% endfor %}
+  </div>
+
+
+<script>
+$('#myCarousel').on('slide.bs.carousel', function () {
+  // do something…
+})
+
+  $('.dropdown-trigger').dropdown();
+
+</script>
+
+  
+  
+
+{% endblock %}
